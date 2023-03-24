@@ -10,6 +10,8 @@ interface IContextProps {
     selectNote: (id: number) => void;
     selectedNote: () => INoteType[];
     giveNotes: () => INoteType[];
+    toggleEdit: (event: boolean) => void;
+    giveEdit: () => boolean;
 }
 
 export const Context = React.createContext({} as IContextProps);

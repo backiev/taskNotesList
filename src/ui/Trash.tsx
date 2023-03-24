@@ -11,12 +11,6 @@ export const Trash = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const handleFormat = (
-  //   event: React.MouseEvent<HTMLElement>,
-  //   newFormats: boolean,
-  // ) => {
-  //   setFormats(true);
-  // };
 
   return (
     <Box>

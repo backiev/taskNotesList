@@ -6,25 +6,32 @@ import { useEffect, useContext } from 'react';
 import { Context } from '../Context';
 
 export const MarkDown: React.FC = () => {
-  const {selectedNote} = useContext(Context);
+  const {selectedNote, giveEdit, editNote} = useContext(Context);
+  const editMode = giveEdit();
   const note = selectedNote();
   useEffect(() => {
-    console.log(note);
   });
   return (
     <Box>
-      <Box>
-        <Typography variant="h5">{note[0].title}</Typography>
-        <Typography variant="subtitle1">{note[0].text}</Typography>
-      </Box>
-      <Box display={'none'}>
-        <TextareaAutosize
-          aria-label="11px"
-          minRows={3}
-          value={"Markdown"}
-          style={{ width: 200, backgroundColor: 'white', color: 'black' }}
-        />
-      </Box>
+      {editMode ? (
+        <Box>
+          <Typography variant="h5">{note[0].title}</Typography>
+          <TextareaAutosize
+            aria-label="11px"
+            minRows={3}
+            value={note[0].text}
+            style={{ height: 400, width: 400, backgroundColor: 'white', color: 'black' }}
+            onChange={(e) => editNote(note[0].id, e.target.value)}
+          />
+        </Box>
+      ) : (
+        <Box>
+          <Typography variant="h5">{note[0].title}</Typography>
+          <Typography variant="subtitle1">{note[0].text}</Typography>
+        </Box>
+      )}
+      
+      
       
     </Box>
   )

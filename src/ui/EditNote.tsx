@@ -2,14 +2,17 @@ import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 import { Theme } from '@mui/joy';
 import { Typography } from '@mui/material';
+import { useContext } from 'react';
+import { Context } from '../Context';
 
 export const EditNote = () => {
-  const [checked, setChecked] = React.useState<boolean>(false);
+  const {toggleEdit, giveEdit} = useContext(Context);
+  const checked = giveEdit();
   return (
     <Switch
       checked={checked}
       onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-        setChecked(event.target.checked)
+        toggleEdit(event.target.checked)
       }
       endDecorator={<Typography>Edit</Typography>}
       sx={(theme: Theme) => ({
