@@ -2,6 +2,11 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
+import { OutlinedInput } from '@mui/material';
+import Button from '@mui/joy/Button';
+import { useState, useContext } from 'react';
+import { Context } from '../Context';
+
 
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
@@ -47,13 +52,27 @@ const style = (theme: Theme) => ({
   padding: '16px 32px 24px 32px',
 });
 
-interface ModalType {
+interface IModalType {
     open: boolean;
     handleClose: () => void;
+    add: boolean;
 }
 
-export const  ModalDelete:React.FC<ModalType> = ({open, handleClose}) => {
-  
+interface IInputAdd {
+  inputTitle: string;
+  inputText: string;
+}
+
+export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
+  const {addNote, removeNote} = useContext(Context);
+  const [inputAdd, setInputAdd] = useState<IInputAdd>({
+    inputTitle: '',
+    inputText: ''
+  });
+
+  const handlerAddNote = () => {
+    addNote(inputAdd.inputTitle, inputAdd.inputText);
+  }
 
   return (
     <div>
@@ -64,10 +83,19 @@ export const  ModalDelete:React.FC<ModalType> = ({open, handleClose}) => {
         onClose={handleClose}
         slots={{ backdrop: Backdrop }}
       >
-        <Box sx={style}>
-          <h2 id="unstyled-modal-title">Text in a modal</h2>
+        {add ? 
+        (<Box sx={style}>
+          <h2 id="unstyled-modal-title">Write Title and Text</h2>
+          <OutlinedInput placeholder='Title...' value={inputAdd.inputTitle} onChange={(e) => setInputAdd({ inputTitle: e.target.value, inputText: inputAdd.inputText})}/>
+          <OutlinedInput placeholder='Text...' value={inputAdd.inputText} onChange={(e) => setInputAdd({ inputTitle: inputAdd.inputTitle, inputText: e.target.value})}/>
+          <Button onClick={handlerAddNote}>Button</Button>
+        </Box>)
+        : 
+        (<Box sx={style}>
+          <h2 id="unstyled-modal-title">Delete</h2>
           <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
-        </Box>
+        </Box>)
+        }
       </Modal>
     </div>
   );

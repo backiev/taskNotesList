@@ -2,6 +2,8 @@ import React from 'react'
 import {Selection} from '../ui/Selection';
 import {FormatNotes} from '../ui/FormatNotes';
 import {Search} from '../ui/Search';
+import {EditNote} from '../ui/EditNote';
+
 import Grid from '@mui/material/Grid';
 
 
@@ -27,6 +29,7 @@ export const TopBar: React.FC = () => {
         <FormatNotes />
         <Selection />
         <Trash />
+        <EditNote />
       </Grid>
       <Grid item sx={{padding: '0px !important'}}> 
         <Search />

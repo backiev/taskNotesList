@@ -26,12 +26,12 @@ export const Trash = () => {
         onChange={() => {
           setSelected(!selected);
         }}
-        style={{marginLeft: '15px'}}
+        style={{margin: '0 15px'}}
         onClick={handleOpen}
       >
         <DeleteIcon />
       </ToggleButton>
-      <ModalDelete open={open} handleClose={handleClose}/>
+      <ModalDelete open={open} handleClose={handleClose} add={false}/>
     </Box>
   )
 }

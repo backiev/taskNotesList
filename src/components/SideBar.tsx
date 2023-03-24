@@ -3,6 +3,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import {INoteType} from '../types/data';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { AddNote } from '../ui/AddNote';
+import { useContext } from 'react';
+import { Context } from '../Context';
 
 const style = {
   width: '100%',
@@ -14,23 +20,35 @@ const style = {
   color: 'black'
 };
 
-export const SideBar = () => {
+interface NoteSideBarProps {
+  notes: INoteType[];
+}
+
+export const SideBar: React.FC<NoteSideBarProps> = ({notes}) => {
+  const {toggleRightBar, selectNote} = useContext(Context);
+  const handlerNote = (id: number) => {
+    selectNote(id);
+    toggleRightBar('markDown');
+  }
+
   return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
-      <ListItem button>
-        <ListItemText primary="Inbox" />
-      </ListItem>
-      <Divider />
-      <ListItem button divider>
-        <ListItemText primary="Drafts" />
-      </ListItem>
-      <ListItem button>
-        <ListItemText primary="Trash" />
-      </ListItem>
-      <Divider light />
-      <ListItem button>
-        <ListItemText primary="Spam" />
-      </ListItem>
-    </List>
+    
+    <Grid sx={style} direction='column' justifyContent="space-between" container spacing={4} style={{paddingTop: '0'}}>
+      <Grid item>
+        <List sx={style} component="nav" aria-label="mailbox folders">
+          {notes.map(note => (
+            <Box key={note.id} onClick={() => handlerNote(note.id)}>
+              <ListItem button>
+                <ListItemText primary={note.title} secondary={note.text}/>
+              </ListItem>
+              <Divider />
+            </Box>
+          ))}
+        </List>
+      </Grid>
+      <Grid item >
+        <AddNote />
+      </Grid>
+    </Grid>
   );
 }
