@@ -64,14 +64,21 @@ interface IInputAdd {
 }
 
 export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
-  const {addNote, removeNote} = useContext(Context);
+  const {addNote, removeNote, selectedNote, toggleRightBar} = useContext(Context);
   const [inputAdd, setInputAdd] = useState<IInputAdd>({
     inputTitle: '',
     inputText: ''
   });
+  const noteSelected = selectedNote();
 
   const handlerAddNote = () => {
     addNote(inputAdd.inputTitle, inputAdd.inputText);
+  }
+
+  const handlerRemoveNote = () => {
+    toggleRightBar('gridNotes');
+    removeNote(noteSelected[0].id);
+    handleClose();
   }
 
   return (
@@ -88,12 +95,12 @@ export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
           <h2 id="unstyled-modal-title">Write Title and Text</h2>
           <OutlinedInput placeholder='Title...' value={inputAdd.inputTitle} onChange={(e) => setInputAdd({ inputTitle: e.target.value, inputText: inputAdd.inputText})}/>
           <OutlinedInput placeholder='Text...' value={inputAdd.inputText} onChange={(e) => setInputAdd({ inputTitle: inputAdd.inputTitle, inputText: e.target.value})}/>
-          <Button onClick={handlerAddNote}>Button</Button>
+          <Button onClick={handlerAddNote}>Add note</Button>
         </Box>)
         : 
         (<Box sx={style}>
-          <h2 id="unstyled-modal-title">Delete</h2>
-          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
+          <h2 id="unstyled-modal-title">Do you want to delete this Note?</h2>
+          <Button onClick={handlerRemoveNote}>Delete</Button>
         </Box>)
         }
       </Modal>

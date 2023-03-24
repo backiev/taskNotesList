@@ -18,6 +18,7 @@ const style = {
 function App() {
   const [rightBar, setRightBar] = useState<IRightBar>({value: 'takeNote', index: -1});
   const [checked, setChecked] = useState<boolean>(false);
+  const [filterNote, setFilterNote] = useState<string>('');
   const [notes, setNotes] = useState<INoteType[]>([
     {
       id: 0,
@@ -62,6 +63,11 @@ function App() {
   const removeNote = (id: number) => {
     setNotes((curNotes) => [...curNotes].filter(note => note.id !== id));
   }
+  const searchNote = (value: string) => {
+    setFilterNote(value);
+  }
+  const giveFilterNote = () => filterNote;
+
   const toggleRightBar = (value: string) => {
     setRightBar({value: value, index: -1});
   }
@@ -89,7 +95,7 @@ function App() {
   const giveEdit = () => checked;
 
   return (
-    <Context.Provider value={{addNote, removeNote, toggleRightBar, editNote, giveRightBar, selectNote, selectedNote, giveNotes, toggleEdit, giveEdit}}>
+    <Context.Provider value={{addNote, removeNote,searchNote,giveFilterNote, toggleRightBar, editNote, giveRightBar, selectNote, selectedNote, giveNotes, toggleEdit, giveEdit}}>
       <Grid sx={style} container spacing={2}>
         <Grid item xs={4}>
           <SideBar notes={notes} />

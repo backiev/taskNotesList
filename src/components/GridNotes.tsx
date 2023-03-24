@@ -10,8 +10,9 @@ import { useEffect, useContext } from 'react';
 import { Context } from '../Context';
 
 export const GridNotes = () => {
-    const {giveNotes, toggleRightBar, selectNote} = useContext(Context);
+    const {giveNotes, toggleRightBar, selectNote, giveFilterNote} = useContext(Context);
     const notes = giveNotes();
+    const filterNote = giveFilterNote();
 
     const cardHandler = (id: number) => {
         selectNote(id);
@@ -19,7 +20,7 @@ export const GridNotes = () => {
     }
   return (
     <Grid container spacing={2}>
-        {notes.map(note => (
+        {notes.filter(item => item.title.startsWith(filterNote)).map(note => (
         <Grid item xs={4} key={note.id} onClick={() => cardHandler(note.id)}>
             <Card>
                 <CardActionArea>
