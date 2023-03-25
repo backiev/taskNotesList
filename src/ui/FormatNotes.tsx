@@ -7,7 +7,7 @@ import { useState, useContext } from 'react';
 import { Context } from '../Context';
 
 export const FormatNotes = () => {
-  const [formats, setFormats] = React.useState<string>('list');
+  const [formats, setFormats] = React.useState<string>('grid');
   const {toggleRightBar} = useContext(Context);
 
   const handleFormat = (

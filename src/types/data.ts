@@ -3,6 +3,9 @@ export interface INoteType {
     title: string;
     text: string;
     date: number;
+    italic: boolean;
+    bold: boolean;
+    underline: boolean;
     selected: boolean;
 }
 

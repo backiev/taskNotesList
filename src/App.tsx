@@ -16,7 +16,7 @@ const style = {
 
 
 function App() {
-  const [rightBar, setRightBar] = useState<IRightBar>({value: 'takeNote', index: -1});
+  const [rightBar, setRightBar] = useState<IRightBar>({value: 'gridNotes', index: -1});
   const [checked, setChecked] = useState<boolean>(false);
   const [filterNote, setFilterNote] = useState<string>('');
   const [notes, setNotes] = useState<INoteType[]>([
@@ -25,40 +25,15 @@ function App() {
       title: 'First note',
       text: 'text of first note',
       date: Date.now(),
-      selected: false,
-    },
-    {
-      id: 1,
-      title: 'Second Note',
-      text: 'text of second note',
-      date: Date.now(),
-      selected: false,
-    },
-    {
-      id: 2,
-      title: 'Third Note',
-      text: 'text of third note',
-      date: Date.now(),
-      selected: false,
-    },
-    {
-      id: 3,
-      title: 'Fourth Note',
-      text: 'text of fourth note',
-      date: Date.now(),
-      selected: false,
-    },
-    {
-      id: 4,
-      title: 'Fourth Note',
-      text: 'text of fourth note',
-      date: Date.now(),
+      italic: false,
+      bold: false,
+      underline: false,
       selected: false,
     },
   ]);
 
   const addNote = (title: string, text: string) => {
-    setNotes((curNotes) => [...curNotes, {id: curNotes.length, title: title, text: text, date: Date.now(), selected: false}]);
+    setNotes((curNotes) => [...curNotes, {id: curNotes.length, title: title, text: text, date: Date.now(), bold: false, italic: false, underline: false, selected: false}]);
   }
   const removeNote = (id: number) => {
     setNotes((curNotes) => [...curNotes].filter(note => note.id !== id));
@@ -78,6 +53,37 @@ function App() {
     });
     setNotes([...newNotes]);
   }
+
+  const toggleFormats = (array: string[], id: number) => {
+
+    const newObjFormats = {
+      bold: false,
+      italic: false,
+      underline: false,
+    }
+    array.map(item => {
+      if (item === 'bold') {
+        newObjFormats.bold = true;
+      } 
+      if (item === 'italic') {
+        newObjFormats.italic = true;
+      } 
+      if (item === 'underline') {
+        newObjFormats.underline = true;
+      }
+    })
+    const newNotes = notes.map(note => {
+      if (note.id === id) {
+        note.bold = newObjFormats.bold;
+        note.italic = newObjFormats.italic;
+        note.underline = newObjFormats.underline;
+      }
+      return note;
+    });
+    setNotes([...newNotes]);
+  }
+
+
   const giveRightBar = () => rightBar.value;
 
   const selectNote = (id: number) => {
@@ -95,7 +101,7 @@ function App() {
   const giveEdit = () => checked;
 
   return (
-    <Context.Provider value={{addNote, removeNote,searchNote,giveFilterNote, toggleRightBar, editNote, giveRightBar, selectNote, selectedNote, giveNotes, toggleEdit, giveEdit}}>
+    <Context.Provider value={{addNote, removeNote,searchNote,giveFilterNote,toggleFormats, toggleRightBar, editNote, giveRightBar, selectNote, selectedNote, giveNotes, toggleEdit, giveEdit}}>
       <Grid sx={style} container spacing={2}>
         <Grid item xs={4}>
           <SideBar notes={notes} />

@@ -6,6 +6,7 @@ interface IContextProps {
     removeNote: (id: number) => void;
     searchNote: (value: string) => void;
     giveFilterNote: () => string;
+    toggleFormats: (array: string[], id: number) => void;
     toggleRightBar: (value: string) => void;
     editNote: (id: number, text: string) => void;
     giveRightBar: () => string;
