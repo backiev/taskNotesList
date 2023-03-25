@@ -3,12 +3,7 @@ import {Selection} from '../ui/Selection';
 import {FormatNotes} from '../ui/FormatNotes';
 import {Search} from '../ui/Search';
 import {EditNote} from '../ui/EditNote';
-
 import Grid from '@mui/material/Grid';
-
-
-
-import Box from '@mui/material/Box';
 import { Trash } from '../ui/Trash';
 
 
@@ -16,12 +11,9 @@ const style = {
   height: '50px',
   width: '100%',
   margin: '10px 0',
-  // margin: '0'
 };
 
 export const TopBar: React.FC = () => {
-  
-
   return (
     <Grid display="flex" alignItems="center" justifyContent="space-between" sx={style} spacing={4} container>
       

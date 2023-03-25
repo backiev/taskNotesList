@@ -3,10 +3,10 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '../Context';
 
-export const FormatNotes = () => {
+export const FormatNotes: React.FC = () => {
   const [formats, setFormats] = React.useState<string>('grid');
   const {toggleRightBar} = useContext(Context);
 

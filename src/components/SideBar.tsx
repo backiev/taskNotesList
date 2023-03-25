@@ -20,11 +20,11 @@ const style = {
   color: 'black'
 };
 
-interface NoteSideBarProps {
+interface INoteSideBarProps {
   notes: INoteType[];
 }
 
-export const SideBar: React.FC<NoteSideBarProps> = ({notes}) => {
+export const SideBar: React.FC<INoteSideBarProps> = ({notes}) => {
   const {toggleRightBar, selectNote} = useContext(Context);
   const handlerNote = (id: number) => {
     selectNote(id);

@@ -1,15 +1,12 @@
-import React from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '../Context';
 
-export const GridNotes = () => {
+export const GridNotes: React.FC = () => {
     const {giveNotes, toggleRightBar, selectNote, giveFilterNote} = useContext(Context);
     const notes = giveNotes();
     const filterNote = giveFilterNote();

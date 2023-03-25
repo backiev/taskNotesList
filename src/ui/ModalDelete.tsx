@@ -64,21 +64,25 @@ interface IInputAdd {
 }
 
 export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
-  const {addNote, removeNote, selectedNote, toggleRightBar} = useContext(Context);
+  const {addNote, removeNote, selectedNote, toggleRightBar, giveRightBar} = useContext(Context);
   const [inputAdd, setInputAdd] = useState<IInputAdd>({
     inputTitle: '',
     inputText: ''
   });
   const noteSelected = selectedNote();
+  const rightBar = giveRightBar();
 
   const handlerAddNote = () => {
     addNote(inputAdd.inputTitle, inputAdd.inputText);
+    setInputAdd({inputTitle: '', inputText: ''});
   }
 
   const handlerRemoveNote = () => {
-    toggleRightBar('gridNotes');
-    removeNote(noteSelected[0].id);
-    handleClose();
+    if (rightBar === 'markDown') {
+      toggleRightBar('gridNotes');
+      removeNote(noteSelected[0].id);
+      handleClose();
+    }
   }
 
   return (

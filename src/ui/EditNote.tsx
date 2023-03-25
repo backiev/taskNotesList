@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 import { useContext } from 'react';
 import { Context } from '../Context';
 
-export const EditNote = () => {
+export const EditNote: React.FC = () => {
   const {toggleEdit, giveEdit} = useContext(Context);
   const checked = giveEdit();
   return (

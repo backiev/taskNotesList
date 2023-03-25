@@ -5,7 +5,6 @@ import './App.css'
 import { SideBar } from './components/SideBar';
 import { Note } from './components/Note';
 import {INoteType, IRightBar} from './types/data'
-
 import { Context } from './Context';
 
 
@@ -13,9 +12,7 @@ const style = {
   height: '100%'
 };
 
-
-
-function App() {
+export const App: React.FC = () => {
   const [rightBar, setRightBar] = useState<IRightBar>({value: 'gridNotes', index: -1});
   const [checked, setChecked] = useState<boolean>(false);
   const [filterNote, setFilterNote] = useState<string>('');
@@ -33,7 +30,8 @@ function App() {
   ]);
 
   const addNote = (title: string, text: string) => {
-    setNotes((curNotes) => [...curNotes, {id: curNotes.length, title: title, text: text, date: Date.now(), bold: false, italic: false, underline: false, selected: false}]);
+    const newNote = {id: notes.length, title: title, text: text, date: Date.now(), bold: false, italic: false, underline: false, selected: false};
+    setNotes((curNotes) => [...curNotes, newNote]);
   }
   const removeNote = (id: number) => {
     setNotes((curNotes) => [...curNotes].filter(note => note.id !== id));
@@ -62,15 +60,9 @@ function App() {
       underline: false,
     }
     array.map(item => {
-      if (item === 'bold') {
-        newObjFormats.bold = true;
-      } 
-      if (item === 'italic') {
-        newObjFormats.italic = true;
-      } 
-      if (item === 'underline') {
-        newObjFormats.underline = true;
-      }
+      if (item === 'bold') newObjFormats.bold = true;
+      if (item === 'italic') newObjFormats.italic = true;
+      if (item === 'underline') newObjFormats.underline = true;
     })
     const newNotes = notes.map(note => {
       if (note.id === id) {
@@ -113,5 +105,3 @@ function App() {
     </Context.Provider>
   )
 }
-
-export default App

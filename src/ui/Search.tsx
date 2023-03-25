@@ -2,7 +2,7 @@ import { OutlinedInput } from '@mui/material';
 import { useState, useContext } from 'react';
 import { Context } from '../Context';
 
-export const Search = () => {
+export const Search: React.FC = () => {
   const [search, setSearch] = useState<string>('');
   const {searchNote, toggleRightBar} = useContext(Context);
 

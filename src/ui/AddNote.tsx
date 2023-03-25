@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
-import Box from '@mui/material/Box';
 import { ModalDelete } from './ModalDelete';
 import AddIcon from '@mui/icons-material/Add';
 import { Typography } from '@mui/material';
@@ -8,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Chip from '@mui/joy/Chip';
 
 
-export const AddNote = () => {
+export const AddNote: React.FC = () => {
   const [selected, setSelected] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

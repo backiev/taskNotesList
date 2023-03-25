@@ -2,35 +2,21 @@ import * as React from 'react';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '../Context';
-import {INoteType} from '../types/data'
 
-export const Selection = () => {
+export const Selection: React.FC = () => {
   const {selectedNote, toggleFormats, giveRightBar} = useContext(Context);
-  // const [formats, setFormats] = React.useState(() => ['bold', 'italic']);
   const rightbar = giveRightBar();
   const note = selectedNote();
 
   let formats: string[] = [];
   if (rightbar === 'markDown') {
-    if (note[0].bold) {
-      formats.push('bold');
-
-    }
-    if (note[0].italic) {
-      formats.push('italic');
-
-    }
-    if (note[0].underline) {
-      formats.push('underline');
-
-    }
-    
+    if (note[0].bold) formats.push('bold');
+    if (note[0].italic) formats.push('italic')
+    if (note[0].underline) formats.push('underline')
   }
 
   const handleFormat = (
