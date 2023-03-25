@@ -12,26 +12,30 @@ const style = {
   height: '100%'
 };
 
+const defaultNotes = [
+  {
+    id: 0,
+    title: 'First note',
+    text: 'text of first note',
+    date: Date.now(),
+    italic: false,
+    bold: false,
+    underline: false,
+    selected: false,
+  },
+]
+
 export const App: React.FC = () => {
   const [rightBar, setRightBar] = useState<IRightBar>({value: 'gridNotes', index: -1});
   const [checked, setChecked] = useState<boolean>(false);
   const [filterNote, setFilterNote] = useState<string>('');
-  const [notes, setNotes] = useState<INoteType[]>([
-    {
-      id: 0,
-      title: 'First note',
-      text: 'text of first note',
-      date: Date.now(),
-      italic: false,
-      bold: false,
-      underline: false,
-      selected: false,
-    },
-  ]);
+  const [notes, setNotes] = useState<INoteType[]>(JSON.parse(localStorage.getItem('notes') || ' ') || defaultNotes);
 
   const addNote = (title: string, text: string) => {
     const newNote = {id: notes.length, title: title, text: text, date: Date.now(), bold: false, italic: false, underline: false, selected: false};
     setNotes((curNotes) => [...curNotes, newNote]);
+    console.log(notes);
+    localStorage.setItem('notes', JSON.stringify([...notes, newNote]));
   }
   const removeNote = (id: number) => {
     setNotes((curNotes) => [...curNotes].filter(note => note.id !== id));
