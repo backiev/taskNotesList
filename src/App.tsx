@@ -38,7 +38,9 @@ export const App: React.FC = () => {
     localStorage.setItem('notes', JSON.stringify([...notes, newNote]));
   }
   const removeNote = (id: number) => {
-    setNotes((curNotes) => [...curNotes].filter(note => note.id !== id));
+    const newNotes = [...notes].filter(note => note.id !== id);
+    setNotes([...newNotes]);
+    localStorage.setItem('notes', JSON.stringify([...newNotes]));    
   }
   const searchNote = (value: string) => {
     setFilterNote(value);
