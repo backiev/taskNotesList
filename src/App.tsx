@@ -101,7 +101,7 @@ export const App: React.FC = () => {
   return (
     <Context.Provider value={{addNote, removeNote,searchNote,giveFilterNote,toggleFormats, toggleRightBar, editNote, giveRightBar, selectNote, selectedNote, giveNotes, toggleEdit, giveEdit}}>
       <Grid sx={style} container spacing={2}>
-        <Grid item xs={4} sx={{height: '100vh', width: '100%'}}>
+        <Grid item xs={4} sx={{minHeight: '100vh', width: '100%'}}>
           <SideBar notes={notes} />
         </Grid>
         <Grid item xs={7} sx={{padding: '0 !important'}}>

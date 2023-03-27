@@ -12,7 +12,8 @@ const style = {
   width: '100%',
   maxWidth: 360,
   bgcolor: '#eee',
-  height: '100vh',
+  minHeight: '100vh',
+  height: '100%',
   padding: '0',
   paddingTop: '50px',
   color: 'black'
@@ -20,12 +21,15 @@ const style = {
 
 const styleList = {
   width: '100%',
+  maxHeight: '80vh',
+  height: '80vh',
   maxWidth: 360,
   bgcolor: '#eee',
   // height: '100vh',
   padding: '0',
   paddingTop: '50px',
-  color: 'black'
+  color: 'black',
+  overflow: 'scroll',
 };
 
 interface INoteSideBarProps {
@@ -40,7 +44,7 @@ export const SideBar: React.FC<INoteSideBarProps> = ({notes}) => {
   }
 
   return (
-    <Grid sx={style} direction='column' justifyContent="space-between" container style={{paddingTop: '0'}}>
+    <Grid sx={style} direction='column' container style={{paddingTop: '0'}}>
       <Grid item>
         <List sx={styleList} component="nav" aria-label="mailbox folders">
           {notes.map(note => (

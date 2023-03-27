@@ -23,7 +23,7 @@ export const GridNotes: React.FC = () => {
         toggleRightBar('markDown');
     }
   return (
-    <Grid container spacing={2} justifyContent="space-between">
+    <Grid container spacing={2}>
         {notes.filter(item => item.title.startsWith(filterNote)).map(note => (
         <Grid item xs={4} key={note.id} onClick={() => cardHandler(note.id)} style={styles}>
             <Card>
