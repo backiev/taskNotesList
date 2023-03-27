@@ -5,6 +5,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useContext } from 'react';
 import { Context } from '../Context';
+import { memo } from 'react';
 
 export const FormatNotes: React.FC = () => {
   const [formats, setFormats] = React.useState<string>('grid');
@@ -36,4 +37,4 @@ export const FormatNotes: React.FC = () => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-}
+};

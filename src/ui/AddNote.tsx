@@ -5,12 +5,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/joy/Chip';
+import { memo } from 'react';
 
 
-export const AddNote: React.FC = () => {
+export const AddNote: React.FC = memo(() => {
   const [selected, setSelected] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen: () => void = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
     <Chip style={{width: '100%'}}>
@@ -33,4 +34,4 @@ export const AddNote: React.FC = () => {
       <ModalDelete open={open} handleClose={handleClose} add={true}/>
     </Chip>
   )
-}
+})

@@ -10,7 +10,7 @@ import { Trash } from '../ui/Trash';
 const style = {
   height: '50px',
   width: '100%',
-  margin: '10px 0',
+  margin: '20px 0',
 };
 
 export const TopBar: React.FC = () => {

@@ -6,6 +6,10 @@ import { OutlinedInput } from '@mui/material';
 import Button from '@mui/joy/Button';
 import { useState, useContext } from 'react';
 import { Context } from '../Context';
+import Grid from '@mui/material/Grid';
+import { Typography } from '@mui/material';
+
+
 
 
 const BackdropUnstyled = React.forwardRef<
@@ -96,15 +100,25 @@ export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
       >
         {add ? 
         (<Box sx={style}>
-          <h2 id="unstyled-modal-title">Write Title and Text</h2>
-          <OutlinedInput placeholder='Title...' value={inputAdd.inputTitle} onChange={(e) => setInputAdd({ inputTitle: e.target.value, inputText: inputAdd.inputText})}/>
-          <OutlinedInput placeholder='Text...' value={inputAdd.inputText} onChange={(e) => setInputAdd({ inputTitle: inputAdd.inputTitle, inputText: e.target.value})}/>
-          <Button onClick={handlerAddNote}>Add note</Button>
+          <Typography variant="h5" mb={2} textAlign={'center'}>Write Title and Text</Typography>
+          <Grid container display={'flex'} flexDirection={'column'} alignItems={'center'} spacing={2}>
+            <Grid item>
+              <OutlinedInput placeholder='Title...' value={inputAdd.inputTitle} onChange={(e) => setInputAdd({ inputTitle: e.target.value, inputText: inputAdd.inputText})}/>
+            </Grid>
+            <Grid item>
+              <OutlinedInput placeholder='Text...' value={inputAdd.inputText} onChange={(e) => setInputAdd({ inputTitle: inputAdd.inputTitle, inputText: e.target.value})}/>
+            </Grid>
+            <Grid item>
+              <Button onClick={handlerAddNote}>Add note</Button>
+            </Grid>
+          </Grid>
         </Box>)
         : 
         (<Box sx={style}>
-          <h2 id="unstyled-modal-title">Do you want to delete this Note?</h2>
-          <Button onClick={handlerRemoveNote}>Delete</Button>
+          <Typography variant="h5" mb={2} textAlign={'center'}>Do you want to delete this Note?</Typography>
+          <Grid display={'flex'} alignItems={'center'}>
+            <Button onClick={handlerRemoveNote} style={{margin: '0 auto'}}>Delete</Button>
+          </Grid>
         </Box>)
         }
       </Modal>

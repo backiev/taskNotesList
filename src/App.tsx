@@ -9,7 +9,7 @@ import { Context } from './Context';
 
 
 const style = {
-  height: '100%'
+  height: '100vh',
 };
 
 const defaultNotes = [
@@ -34,7 +34,6 @@ export const App: React.FC = () => {
   const addNote = (title: string, text: string) => {
     const newNote = {id: notes.length, title: title, text: text, date: Date.now(), bold: false, italic: false, underline: false, selected: false};
     setNotes((curNotes) => [...curNotes, newNote]);
-    console.log(notes);
     localStorage.setItem('notes', JSON.stringify([...notes, newNote]));
   }
   const removeNote = (id: number) => {
@@ -101,10 +100,10 @@ export const App: React.FC = () => {
   return (
     <Context.Provider value={{addNote, removeNote,searchNote,giveFilterNote,toggleFormats, toggleRightBar, editNote, giveRightBar, selectNote, selectedNote, giveNotes, toggleEdit, giveEdit}}>
       <Grid sx={style} container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={4} sx={{height: '100vh', width: '100%'}}>
           <SideBar notes={notes} />
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={7} sx={{padding: '0 !important'}}>
           <Note/>
         </Grid>
       </Grid>
