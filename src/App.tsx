@@ -29,7 +29,7 @@ export const App: React.FC = () => {
   const [rightBar, setRightBar] = useState<IRightBar>({value: 'gridNotes', index: -1});
   const [checked, setChecked] = useState<boolean>(false);
   const [filterNote, setFilterNote] = useState<string>('');
-  const [notes, setNotes] = useState<INoteType[]>(JSON.parse(localStorage.getItem('notes') || ' ') || defaultNotes);
+  const [notes, setNotes] = useState<INoteType[]>(JSON.parse(localStorage.getItem('notes') as string) || defaultNotes);
 
   const addNote = (title: string, text: string) => {
     const newNote = {id: notes.length, title: title, text: text, date: Date.now(), bold: false, italic: false, underline: false, selected: false};

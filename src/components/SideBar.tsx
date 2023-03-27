@@ -48,7 +48,7 @@ export const SideBar: React.FC<INoteSideBarProps> = ({notes}) => {
       <Grid item>
         <List sx={styleList} component="nav" aria-label="mailbox folders">
           {notes.map(note => (
-            <ListItemNote note={note} handlerNote={handlerNote} key={note.id}/>
+            <ListItemNote note={note} handlerNote={handlerNote} key={note.date}/>
           ))}
         </List>
       </Grid>
