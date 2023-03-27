@@ -12,9 +12,9 @@ export const Note: React.FC = () => {
   return (
     <Grid container direction='column'>
       <Grid item><TopBar /></Grid>
-      { (rightBar === 'takeNote') ? (<Grid item><TakeNote /></Grid>) : '' }
-      { (rightBar === 'markDown') ? (<Grid item><MarkDown /></Grid>) : '' }
-      { (rightBar === 'gridNotes') ? (<Grid item><GridNotes /></Grid>) : '' }
+      { (rightBar === 'takeNote') ? (<Grid item style={{maxWidth: '100%'}}><TakeNote /></Grid>) : '' }
+      { (rightBar === 'markDown') ? (<Grid item style={{maxWidth: '100%'}}><MarkDown /></Grid>) : '' }
+      { (rightBar === 'gridNotes') ? (<Grid item style={{maxWidth: '100%'}}><GridNotes /></Grid>) : '' }
     </Grid>
   )
 }

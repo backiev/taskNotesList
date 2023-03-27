@@ -39,7 +39,7 @@ export const App: React.FC = () => {
   const removeNote = (id: number) => {
     const newNotes = [...notes].filter(note => note.id !== id);
     setNotes([...newNotes]);
-    localStorage.setItem('notes', JSON.stringify([...newNotes]));    
+    localStorage.setItem('notes', JSON.stringify([...newNotes])); 
   }
   const searchNote = (value: string) => {
     setFilterNote(value);
@@ -55,6 +55,7 @@ export const App: React.FC = () => {
       return note;
     });
     setNotes([...newNotes]);
+    localStorage.setItem('notes', JSON.stringify([...newNotes])); 
   }
 
   const toggleFormats = (array: string[], id: number) => {

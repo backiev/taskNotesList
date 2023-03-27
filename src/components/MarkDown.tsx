@@ -2,40 +2,46 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Typography } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, CSSProperties  } from 'react';
 import { Context } from '../Context';
 
 interface IStylesEdit {
-  height: number;
-  width: number;
+  height: string;
+  width: string;
   backgroundColor: string;
   color: string;
+  resize: string;
 }
 
 interface IStylesDefault {
   fontWeight: string;
   textDecoration: string;
   fontStyle: string;
+  wordWrap: string;
 }
 
-
+const stylesEdit: CSSProperties = {
+  height: '70vh',
+  // maxWidth: 400,
+  width: '100%',
+  backgroundColor: 'white',
+  color: 'black',
+  resize: 'none',
+  outline: 'none'
+}
 
 export const MarkDown: React.FC = () => {
   const {selectedNote,toggleEdit, giveEdit, editNote} = useContext(Context);
   const editMode = giveEdit();
   const note = selectedNote();
 
-  const stylesEdit: IStylesEdit = {
-    height: 400,
-    width: 400,
-    backgroundColor: 'white',
-    color: 'black',
-  }
-  const stylesDefault: IStylesDefault = {
+  const stylesDefault: CSSProperties = {
     fontWeight: 'none',
     textDecoration: 'none',
     fontStyle: 'none',
+    wordWrap: 'break-word',
   }
+  
 
   note[0].bold ? stylesDefault.fontWeight = 'bold' : stylesDefault.fontWeight = 'normal';
   note[0].italic ? stylesDefault.fontStyle = 'italic' : stylesDefault.fontStyle = 'normal';
@@ -55,7 +61,7 @@ export const MarkDown: React.FC = () => {
           />
         </Box>
       ) : (
-        <Box>
+        <Box >
           <Typography variant="h5">{note[0].title}</Typography>
           <Typography variant="subtitle1" 
             onClick={() => toggleEdit(true)} 

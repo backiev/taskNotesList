@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
@@ -11,15 +11,25 @@ interface IListItem {
     handlerNote: (id: number) => void;
 }
 
+interface IStylesItem  {
+  whiteSpace: string,
+  overflow: string,
+  textOverflow: string,
+}
 
+const styles: CSSProperties = {
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+}
 
 export const ListItemNote: React.FC<IListItem> = ({note, handlerNote}) => {
   return (
     <Box  onClick={() => handlerNote(note.id)}>
-        <ListItem button>
-          <ListItemText primary={note.title} secondary={note.text}/>
-        </ListItem>
-        <Divider />
+      <ListItem button>
+        <ListItemText primary={note.title} secondary={note.text} style={styles} />
+      </ListItem>
+      <Divider />
     </Box>
   )
 }

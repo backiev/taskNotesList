@@ -3,8 +3,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useContext } from 'react';
+import { CSSProperties, useContext } from 'react';
 import { Context } from '../Context';
+
+const styles: CSSProperties = {
+    whiteSpace: 'nowrap',
+    // overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: 250
+}
 
 export const GridNotes: React.FC = () => {
     const {giveNotes, toggleRightBar, selectNote, giveFilterNote} = useContext(Context);
@@ -16,9 +23,9 @@ export const GridNotes: React.FC = () => {
         toggleRightBar('markDown');
     }
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} justifyContent="space-between">
         {notes.filter(item => item.title.startsWith(filterNote)).map(note => (
-        <Grid item xs={4} key={note.id} onClick={() => cardHandler(note.id)}>
+        <Grid item xs={4} key={note.id} onClick={() => cardHandler(note.id)} style={styles}>
             <Card>
                 <CardActionArea>
                     <CardContent>
