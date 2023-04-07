@@ -5,20 +5,13 @@ import Grid from '@mui/material/Grid';
 import { GridNotes } from './GridNotes';
 import { TakeNote } from './TakeNote';
 import { memo } from 'react';
+import {IRightBarProps} from '../types/data';
 
-
-interface IRightBar {
-  value: string;
-  index: number
-}
-interface IRightBarProps {
-  rightBar: IRightBar;
-}
 
 export const Note: React.FC<IRightBarProps> = ({rightBar}) => {
   return (
     <Grid container direction='column'>
-      <Grid item><TopBar /></Grid>
+      <Grid item><TopBar rightBar={rightBar} /></Grid>
       { (rightBar.value === 'takeNote') ? (<Grid item style={{maxWidth: '100%'}}><TakeNote /></Grid>) : '' }
       { (rightBar.value === 'markDown') ? (<Grid item style={{maxWidth: '100%'}}><MarkDown /></Grid>) : '' }
       { (rightBar.value === 'gridNotes') ? (<Grid item style={{maxWidth: '100%'}}><GridNotes /></Grid>) : '' }

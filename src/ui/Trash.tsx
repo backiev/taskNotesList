@@ -3,13 +3,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ToggleButton from '@mui/material/ToggleButton';
 import Box from '@mui/material/Box';
 import { ModalDelete } from './ModalDelete';
+import {IRightBarProps} from '../types/data';
 
 
 
-export const Trash: React.FC = memo(() => {
+export const Trash: React.FC<IRightBarProps>= memo(({rightBar}) => {
   const [selected, setSelected] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+
+  const handleOpen = () => {
+    rightBar.value === 'markDown' ? setOpen(true) : ' ';
+  };
   const handleClose = () => setOpen(false);
 
   return (

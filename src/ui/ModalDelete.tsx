@@ -67,7 +67,7 @@ interface IInputAdd {
   inputText: string;
 }
 
-export const  ModalDelete:React.FC<IModalType> = React.memo(({open, handleClose, add}) => {
+export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
   const {addNote, removeNote, selectedNote, toggleRightBar, giveRightBar} = useContext(Context);
   const [inputAdd, setInputAdd] = useState<IInputAdd>({
     inputTitle: '',
@@ -128,4 +128,4 @@ export const  ModalDelete:React.FC<IModalType> = React.memo(({open, handleClose,
       </Modal>
     </div>
   );
-});
+};

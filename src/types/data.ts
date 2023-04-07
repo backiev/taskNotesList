@@ -13,3 +13,7 @@ export interface IRightBar {
     value: string;
     index: number;
 }
+
+export interface IRightBarProps {
+    rightBar: IRightBar;
+}
