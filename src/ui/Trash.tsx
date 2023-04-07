@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ToggleButton from '@mui/material/ToggleButton';
 import Box from '@mui/material/Box';
@@ -6,7 +6,7 @@ import { ModalDelete } from './ModalDelete';
 
 
 
-export const Trash: React.FC = () => {
+export const Trash: React.FC = memo(() => {
   const [selected, setSelected] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -28,4 +28,4 @@ export const Trash: React.FC = () => {
       <ModalDelete open={open} handleClose={handleClose} add={false}/>
     </Box>
   )
-}
+})

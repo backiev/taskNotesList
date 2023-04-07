@@ -1,20 +1,27 @@
-import React, {useContext} from 'react'
+import React, { useContext} from 'react'
 import {MarkDown} from './MarkDown'
 import { TopBar } from './TopBar'
 import Grid from '@mui/material/Grid';
 import { GridNotes } from './GridNotes';
 import { TakeNote } from './TakeNote';
-import { Context } from '../Context';
+import { memo } from 'react';
 
-export const Note: React.FC = () => {
-  const {giveRightBar} = useContext(Context);
-  const rightBar = giveRightBar();
+
+interface IRightBar {
+  value: string;
+  index: number
+}
+interface IRightBarProps {
+  rightBar: IRightBar;
+}
+
+export const Note: React.FC<IRightBarProps> = ({rightBar}) => {
   return (
     <Grid container direction='column'>
       <Grid item><TopBar /></Grid>
-      { (rightBar === 'takeNote') ? (<Grid item style={{maxWidth: '100%'}}><TakeNote /></Grid>) : '' }
-      { (rightBar === 'markDown') ? (<Grid item style={{maxWidth: '100%'}}><MarkDown /></Grid>) : '' }
-      { (rightBar === 'gridNotes') ? (<Grid item style={{maxWidth: '100%'}}><GridNotes /></Grid>) : '' }
+      { (rightBar.value === 'takeNote') ? (<Grid item style={{maxWidth: '100%'}}><TakeNote /></Grid>) : '' }
+      { (rightBar.value === 'markDown') ? (<Grid item style={{maxWidth: '100%'}}><MarkDown /></Grid>) : '' }
+      { (rightBar.value === 'gridNotes') ? (<Grid item style={{maxWidth: '100%'}}><GridNotes /></Grid>) : '' }
     </Grid>
   )
-}
+};

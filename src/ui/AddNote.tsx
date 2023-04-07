@@ -13,6 +13,7 @@ export const AddNote: React.FC = memo(() => {
   const [open, setOpen] = React.useState(false);
   const handleOpen: () => void = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
   return (
     <Chip style={{width: '100%'}}>
       <Grid container spacing={4} alignItems="center" >

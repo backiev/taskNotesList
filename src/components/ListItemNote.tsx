@@ -1,4 +1,4 @@
-import React, {CSSProperties} from 'react';
+import React, {CSSProperties, memo} from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
@@ -23,7 +23,9 @@ const styles: CSSProperties = {
   textOverflow: 'ellipsis',
 }
 
-export const ListItemNote: React.FC<IListItem> = ({note, handlerNote}) => {
+export const ListItemNote: React.FC<IListItem> = memo(({note, handlerNote}) => {
+
+  
   return (
     <Box  onClick={() => handlerNote(note.id)}>
       <ListItem button>
@@ -32,4 +34,4 @@ export const ListItemNote: React.FC<IListItem> = ({note, handlerNote}) => {
       <Divider />
     </Box>
   )
-}
+});

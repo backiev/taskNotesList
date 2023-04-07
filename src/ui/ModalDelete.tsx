@@ -67,7 +67,7 @@ interface IInputAdd {
   inputText: string;
 }
 
-export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
+export const  ModalDelete:React.FC<IModalType> = React.memo(({open, handleClose, add}) => {
   const {addNote, removeNote, selectedNote, toggleRightBar, giveRightBar} = useContext(Context);
   const [inputAdd, setInputAdd] = useState<IInputAdd>({
     inputTitle: '',
@@ -89,6 +89,10 @@ export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
     }
   }
 
+  const handlerInput = React.useCallback((event: any) => {
+    setInputAdd({ inputTitle: event, inputText: inputAdd.inputText})
+  }, [inputAdd.inputTitle])
+
   return (
     <div>
       <Modal
@@ -103,7 +107,7 @@ export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
           <Typography variant="h5" mb={2} textAlign={'center'}>Write Title and Text</Typography>
           <Grid container display={'flex'} flexDirection={'column'} alignItems={'center'} spacing={2}>
             <Grid item>
-              <OutlinedInput placeholder='Title...' value={inputAdd.inputTitle} onChange={(e) => setInputAdd({ inputTitle: e.target.value, inputText: inputAdd.inputText})}/>
+              <OutlinedInput placeholder='Title...' value={inputAdd.inputTitle} onChange={(e) => handlerInput(e.target.value)}/>
             </Grid>
             <Grid item>
               <OutlinedInput placeholder='Text...' value={inputAdd.inputText} onChange={(e) => setInputAdd({ inputTitle: inputAdd.inputTitle, inputText: e.target.value})}/>
@@ -124,4 +128,4 @@ export const  ModalDelete:React.FC<IModalType> = ({open, handleClose, add}) => {
       </Modal>
     </div>
   );
-}
+});

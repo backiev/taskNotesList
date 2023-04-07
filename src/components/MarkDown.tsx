@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Box from '@mui/material/Box';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Typography } from '@mui/material';
@@ -71,7 +71,7 @@ export const MarkDown: React.FC = () => {
       )}
     </Box>
   )
-}
+};
 
 
 

@@ -5,10 +5,10 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { CSSProperties, useContext } from 'react';
 import { Context } from '../Context';
+import { memo } from 'react';
 
 const styles: CSSProperties = {
     whiteSpace: 'nowrap',
-    // overflow: 'hidden',
     textOverflow: 'ellipsis',
     maxWidth: 250
 }
@@ -22,6 +22,8 @@ export const GridNotes: React.FC = () => {
         selectNote(id);
         toggleRightBar('markDown');
     }
+
+    
   return (
     <Grid container spacing={2}>
         {notes.filter(item => item.title.startsWith(filterNote)).map(note => (
@@ -42,4 +44,4 @@ export const GridNotes: React.FC = () => {
         ))}
     </Grid>
   )
-}
+};

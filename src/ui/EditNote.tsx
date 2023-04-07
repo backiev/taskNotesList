@@ -4,10 +4,12 @@ import { Theme } from '@mui/joy';
 import { Typography } from '@mui/material';
 import { useContext } from 'react';
 import { Context } from '../Context';
+import { memo } from 'react';
 
 export const EditNote: React.FC = () => {
   const {toggleEdit, giveEdit} = useContext(Context);
   const checked = giveEdit();
+  
   return (
     <Switch
       checked={checked}
@@ -39,4 +41,4 @@ export const EditNote: React.FC = () => {
       })}
     />
   );
-}
+};

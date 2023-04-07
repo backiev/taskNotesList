@@ -34,14 +34,17 @@ const styleList = {
 
 interface INoteSideBarProps {
   notes: INoteType[];
+  toggleRightBar: (value: string) => void;
+  selectNote: (id: number) => void;
 }
 
-export const SideBar: React.FC<INoteSideBarProps> = ({notes}) => {
-  const {toggleRightBar, selectNote} = useContext(Context);
-  const handlerNote = (id: number) => {
+export const SideBar: React.FC<INoteSideBarProps> = React.memo(({notes, toggleRightBar, selectNote}) => {
+  const handlerNote = React.useCallback((id: number) => {
     selectNote(id);
     toggleRightBar('markDown');
-  }
+  }, [notes]);
+  
+
 
   return (
     <Grid sx={style} direction='column' container style={{paddingTop: '0'}}>
@@ -57,4 +60,4 @@ export const SideBar: React.FC<INoteSideBarProps> = ({notes}) => {
       </Grid>
     </Grid>
   );
-}
+});

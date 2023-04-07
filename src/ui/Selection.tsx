@@ -12,7 +12,7 @@ export const Selection: React.FC = () => {
   const rightbar = giveRightBar();
   const note = selectedNote();
 
-  let formats: string[] = [];
+  const formats: string[] = React.useMemo(() => [], [note]);
   if (rightbar === 'markDown') {
     if (note[0].bold) formats.push('bold');
     if (note[0].italic) formats.push('italic')
@@ -45,4 +45,4 @@ export const Selection: React.FC = () => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-}
+};

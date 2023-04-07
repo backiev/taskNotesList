@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {Selection} from '../ui/Selection';
 import {FormatNotes} from '../ui/FormatNotes';
 import {Search} from '../ui/Search';
@@ -13,7 +13,7 @@ const style = {
   margin: '20px 0',
 };
 
-export const TopBar: React.FC = () => {
+export const TopBar: React.FC = memo(() => {
   return (
     <Grid display="flex" alignItems="center" justifyContent="space-between" sx={style} spacing={4} container>
       
@@ -29,4 +29,4 @@ export const TopBar: React.FC = () => {
 
     </Grid>
   )
-}
+});
